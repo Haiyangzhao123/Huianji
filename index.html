@@ -1336,10 +1336,31 @@
             flex: 1;
         }
         
-        .units-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+        .units-overview {
+    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+.units-overview::-webkit-scrollbar {
+    width: 6px;
+}
+
+.units-overview::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.units-overview::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.units-overview::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
         
         .units-table th {
             background-color: #f8f9fa;
@@ -4359,3 +4380,4 @@
     </script>
 </body>
 </html>
+
