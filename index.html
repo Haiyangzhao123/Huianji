@@ -1612,6 +1612,34 @@
             align-items: center;
             gap: 5px;
         }
+        /* 修复滚动问题 - 添加在文件末尾 */
+        .units-overview {
+            -webkit-overflow-scrolling: touch !important;
+        }
+        
+        .buildings-list {
+            -webkit-overflow-scrolling: touch !important;
+        }
+        
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
     </style>
 </head>
 <body>
@@ -4380,5 +4408,6 @@
     </script>
 </body>
 </html>
+
 
 
