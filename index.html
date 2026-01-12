@@ -21,401 +21,217 @@
             padding: 15px;
             min-height: 100vh;
             -webkit-text-size-adjust: 100%;
+            padding-bottom: 70px;
+        }
+        
+        @media (min-width: 769px) {
+            body {
+                padding-left: 70px;
+                padding-bottom: 15px;
+            }
         }
         
         .container {
             max-width: 1800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(280px, 300px) 1fr;
-            gap: 20px;
+            width: 100%;
         }
         
-        @media (max-width: 1200px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
+        /* 页面容器 */
+        .page {
+            display: none;
         }
         
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                gap: 12px;
-            }
-            
-            .input-row {
-                grid-template-columns: 1fr !important;
-                gap: 10px !important;
-            }
-            
-            .units-container {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-            }
-            
-            .unit-card {
-                min-height: 90px !important;
-                padding: 12px !important;
-            }
-            
-            .unit-tag {
-                font-size: 0.75rem !important;
-                padding: 3px 6px !important;
-            }
-            
-            .panel {
-                padding: 20px !important;
-            }
-            
-            .panel-header {
-                padding: 20px !important;
-            }
-            
-            .panel-content {
-                padding: 20px !important;
-            }
-            
-            .btn {
-                padding: 12px 18px !important;
-                font-size: 0.95rem !important;
-            }
-            
-            .system-name {
-                font-size: 2rem !important;
-            }
-            
-            .project-name {
-                font-size: 1rem !important;
-            }
-            
-            .header-area {
-                padding: 15px 20px !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 10px;
-            }
-            
-            .header-info {
-                text-align: left !important;
-                align-self: flex-start !important;
-            }
-            
-            .stat-number {
-                font-size: 2.2rem !important;
-            }
-            
-            .stat-card {
-                padding: 20px !important;
-            }
-            
-            .dashboard {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 15px !important;
-            }
-            
-            .units-table th, 
-            .units-table td {
-                padding: 10px 12px !important;
-            }
-            
-            .units-table {
-                font-size: 0.9rem;
-            }
-            
-            .modal-content {
-                width: 95% !important;
-                padding: 20px !important;
+        .page.active {
+            display: block;
+        }
+        
+        /* 左侧导航栏（电脑端） */
+        .left-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 70px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 20px;
+            display: none;
+        }
+        
+        @media (min-width: 769px) {
+            .left-nav {
+                display: flex;
             }
         }
         
-        @media (max-width: 480px) {
-            .dashboard {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .units-container {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .tag-options {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .form-actions {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
-            
-            .form-actions .btn {
-                width: 100% !important;
-            }
-            
-            .search-bar {
-                flex-direction: column !important;
-            }
-            
-            .search-bar input {
-                width: 100% !important;
-            }
-            
-            .filter-controls {
-                flex-wrap: wrap !important;
-            }
-            
-            .filter-control {
-                flex: 1 0 auto !important;
-                min-width: calc(50% - 7.5px) !important;
-            }
-            
-            .modal-buttons {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
-            
-            .modal-buttons .btn {
-                width: 100% !important;
-            }
-            
-            .edit-section {
-                gap: 20px !important;
-            }
-            
-            .building-management {
-                gap: 20px !important;
+        .left-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #7f8c8d;
+            width: 100%;
+            padding: 15px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .left-nav-item.active {
+            color: #3498db;
+            border-left-color: #3498db;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .left-nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .left-nav-item span {
+            font-size: 0.7rem;
+        }
+        
+        .left-nav-center-btn {
+            width: 50px;
+            height: 50px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 底部导航栏（移动端） */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #7f8c8d;
+            flex: 1;
+            padding: 5px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .bottom-nav-item.active {
+            color: #3498db;
+        }
+        
+        .bottom-nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        
+        .bottom-nav-item span {
+            font-size: 0.75rem;
+        }
+        
+        .nav-center-btn {
+            width: 50px;
+            height: 50px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -25px;
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 电脑端隐藏底部导航 */
+        @media (min-width: 769px) {
+            .bottom-nav {
+                display: none;
             }
         }
         
-        @media (max-width: 375px) {
-            .container {
-                padding: 0;
-            }
-            
-            .panel {
-                padding: 15px !important;
-                border-radius: 10px !important;
-            }
-            
-            .panel-header {
-                padding: 15px !important;
-            }
-            
-            .panel-content {
-                padding: 15px !important;
-            }
-            
-            .building-stats {
-                flex-direction: column !important;
-                gap: 5px !important;
-                align-items: flex-start !important;
+        /* 搜索功能按钮 */
+        .search-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        @media (min-width: 769px) {
+            .search-btn {
+                left: 85px;
             }
         }
         
-        /* 新增样式 */
-        .password-modal {
+        /* 搜索面板 */
+        .search-panel {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .password-modal-content {
             background: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .unplaced-section {
-            margin-top: 25px;
-            border-top: 1px solid #eee;
-            padding-top: 25px;
-        }
-        
-        .unplaced-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .unplaced-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        
-        .unplaced-table th {
-            background-color: #f8f9fa;
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #2c3e50;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .unplaced-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .unplaced-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .unplaced-actions-btn {
-            padding: 8px 12px;
-            border-radius: 6px;
-            background-color: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .unplaced-actions-btn:hover {
-            background-color: #e9ecef;
-        }
-        
-        .unplaced-edit-btn {
-            color: #3498db;
-            border-color: #3498db;
-        }
-        
-        .unplaced-delete-btn {
-            color: #e74c3c;
-            border-color: #e74c3c;
-        }
-        
-        .search-person-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .search-person-input {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .search-person-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        
-        .search-results {
-            margin-top: 20px;
-            max-height: 400px;
+            z-index: 1001;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
             overflow-y: auto;
         }
         
-        .search-result-item {
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border: 1px solid #e0e0e0;
-            background-color: white;
+        .search-panel.active {
+            display: flex;
         }
         
-        .search-result-header {
+        .search-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
         
-        .search-result-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #2c3e50;
+        .search-content {
+            flex: 1;
+            overflow-y: auto;
         }
         
-        .search-result-contact {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-        
-        .search-result-location {
-            color: #3498db;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        .search-result-units {
-            margin-top: 10px;
-        }
-        
-        .search-result-unit {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
-            background-color: #e3f2fd;
-            color: #3498db;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-        }
-        
-        .unit-note {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px dashed #eee;
-        }
-        
-        .unit-note-label {
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .note-input {
-            margin-top: 10px;
-        }
-        
-        .note-input textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            min-height: 80px;
-            resize: vertical;
-        }
-        
-        .note-input textarea:focus {
-            border-color: #3498db;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
-        
-        .note-display {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-        
-        /* 保持原有样式，仅增加移动端适配 */
+        /* 其他样式保持原有，仅作必要修改 */
         .header-area {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
@@ -462,7 +278,6 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
-            grid-column: 1 / -1;
         }
         
         .stat-card {
@@ -526,33 +341,8 @@
         
         .main-layout {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 1fr;
             gap: 25px;
-            grid-column: 1 / -1;
-        }
-        
-        @media (max-width: 1200px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .left-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .right-content {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 25px;
-        }
-        
-        @media (max-width: 1600px) {
-            .right-content {
-                grid-template-columns: 1fr;
-            }
         }
         
         .panel {
@@ -670,6 +460,7 @@
         .building-actions {
             display: flex;
             gap: 8px;
+            align-items: center;
         }
         
         .building-action {
@@ -1206,6 +997,11 @@
             font-weight: 600;
         }
         
+        .unit-modal-tag.unplaced {
+            background-color: #3498db !important;
+            color: white !important;
+        }
+
         .filter-controls {
             display: flex;
             gap: 15px;
@@ -1299,12 +1095,6 @@
             gap: 25px;
         }
         
-        @media (max-width: 1400px) {
-            .building-management {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         .status-indicator {
             width: 16px;
             height: 16px;
@@ -1336,30 +1126,9 @@
             flex: 1;
         }
         
-        .units-overview {
-            margin-top: 20px;
-            max-height: 500px;
-            overflow-y: auto;
-            flex: 1;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .units-overview::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .units-overview::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-        
-        .units-overview::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
-        
-        .units-overview::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+        .units-table {
+            width: 100%;
+            border-collapse: collapse;
         }
         
         .units-table th {
@@ -1612,215 +1381,549 @@
             align-items: center;
             gap: 5px;
         }
-        /* 修复滚动问题 - 添加在文件末尾 */
-        .units-overview {
-            -webkit-overflow-scrolling: touch !important;
+        
+        /* 新增样式 */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
         }
         
-        .buildings-list {
-            -webkit-overflow-scrolling: touch !important;
+        .password-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
-        /* 滚动条美化 */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        .unplaced-section {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
+        .unplaced-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
         }
         
-        ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
+        .unplaced-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
         
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+        .unplaced-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .unplaced-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .unplaced-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .unplaced-actions-btn {
+            padding: 8px 12px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .unplaced-actions-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .unplaced-edit-btn {
+            color: #3498db;
+            border-color: #3498db;
+        }
+        
+        .unplaced-delete-btn {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .search-person-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .search-person-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .search-person-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .search-results {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .search-result-item {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #e0e0e0;
+            background-color: white;
+        }
+        
+        .search-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .search-result-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        .search-result-contact {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .search-result-location {
+            color: #3498db;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-units {
+            margin-top: 10px;
+        }
+        
+        .search-result-unit {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background-color: #e3f2fd;
+            color: #3498db;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .unit-note {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+        
+        .unit-note-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .note-input {
+            margin-top: 10px;
+        }
+        
+        .note-input textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .note-input textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .note-display {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        /* 楼栋多选框样式 */
+        .building-checkbox {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        /* 未安置人员列表容器 */
+        .unplaced-list-container {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                gap: 12px;
+            }
+            
+            .input-row {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            
+            .units-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+            
+            .unit-card {
+                min-height: 90px !important;
+                padding: 12px !important;
+            }
+            
+            .unit-tag {
+                font-size: 0.75rem !important;
+                padding: 3px 6px !important;
+            }
+            
+            .panel {
+                padding: 20px !important;
+            }
+            
+            .panel-header {
+                padding: 20px !important;
+            }
+            
+            .panel-content {
+                padding: 20px !important;
+            }
+            
+            .btn {
+                padding: 12px 18px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .system-name {
+                font-size: 2rem !important;
+            }
+            
+            .project-name {
+                font-size: 1rem !important;
+            }
+            
+            .header-area {
+                padding: 15px 20px !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px;
+            }
+            
+            .header-info {
+                text-align: left !important;
+                align-self: flex-start !important;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .stat-card {
+                padding: 20px !important;
+            }
+            
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            
+            .units-table th, 
+            .units-table td {
+                padding: 10px 12px !important;
+            }
+            
+            .units-table {
+                font-size: 0.9rem;
+            }
+            
+            .modal-content {
+                width: 95% !important;
+                padding: 20px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dashboard {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .units-container {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .tag-options {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .form-actions {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            
+            .form-actions .btn {
+                width: 100% !important;
+            }
+            
+            .search-bar {
+                flex-direction: column !important;
+            }
+            
+            .search-bar input {
+                width: 100% !important;
+            }
+            
+            .filter-controls {
+                flex-wrap: wrap !important;
+            }
+            
+            .filter-control {
+                flex: 1 0 auto !important;
+                min-width: calc(50% - 7.5px) !important;
+            }
+            
+            .modal-buttons {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            
+            .modal-buttons .btn {
+                width: 100% !important;
+            }
+            
+            .edit-section {
+                gap: 20px !important;
+            }
+            
+            .building-management {
+                gap: 20px !important;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .container {
+                padding: 0;
+            }
+            
+            .panel {
+                padding: 15px !important;
+                border-radius: 10px !important;
+            }
+            
+            .panel-header {
+                padding: 15px !important;
+            }
+            
+            .panel-content {
+                padding: 15px !important;
+            }
+            
+            .building-stats {
+                flex-direction: column !important;
+                gap: 5px !important;
+                align-items: flex-start !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 搜索按钮 -->
+    <div class="search-btn" id="searchBtn">
+        <i class="fas fa-search"></i>
+    </div>
+    
+    <!-- 左侧导航栏（电脑端） -->
+    <div class="left-nav" id="leftNav">
+        <div class="left-nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>房源信息</span>
+        </div>
+        <div class="left-nav-center-btn" data-page="edit">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="left-nav-item" data-page="manage">
+            <i class="fas fa-cog"></i>
+            <span>操作栏</span>
+        </div>
+    </div>
+    
+    <!-- 搜索面板 -->
+    <div class="search-panel" id="searchPanel">
+        <div class="search-header">
+            <h4 style="margin:0;color:#2c3e50;">人员检索</h4>
+            <i class="fas fa-times" id="closeSearch" style="cursor:pointer;color:#95a5a6;"></i>
+        </div>
+        <div class="search-content">
+            <div style="margin-bottom:15px;">
+                <input type="text" id="searchPersonName" placeholder="输入人员姓名" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;">
+            </div>
+            <button class="btn" id="searchPersonBtn" style="width:100%;margin-bottom:15px;">
+                <i class="fas fa-search"></i> 搜索
+            </button>
+            <div id="searchResults"></div>
+        </div>
+    </div>
+    
     <div class="container">
-        <div class="header-area">
-            <div class="logo-section">
-                <div class="system-name">辉安记</div>
-                <div class="project-name">辉县市亿源龙城（绿城）项目楼栋登记信息</div>
-            </div>
-            <div class="header-info">
-                <div class="current-date" id="current-date">正在加载日期...</div>
-            </div>
-        </div>
-        
-        <div class="dashboard">
-            <div class="stat-card total" id="total-stat-card" data-filter="all">
-                <h3><i class="fas fa-home"></i> 房源总数</h3>
-                <div class="stat-number" id="total-units">0</div>
-            </div>
-            <div class="stat-card empty" id="empty-stat-card" data-filter="empty">
-                <h3><i class="fas fa-door-open"></i> 空房数量</h3>
-                <div class="stat-number" id="empty-units">0</div>
-            </div>
-            <div class="stat-card purchased" id="purchased-stat-card" data-filter="purchased">
-                <h3><i class="fas fa-user-tie"></i> 购房户数量</h3>
-                <div class="stat-number" id="purchased-units">0</div>
-            </div>
-            <div class="stat-card relocated" id="relocated-stat-card" data-filter="relocated">
-                <h3><i class="fas fa-users"></i> 安置户数量</h3>
-                <div class="stat-number" id="relocated-units">0</div>
-            </div>
-            <div class="stat-card mortgage" id="mortgage-stat-card" data-filter="mortgage">
-                <h3><i class="fas fa-handshake"></i> 抵账房数量</h3>
-                <div class="stat-number" id="mortgage-units">0</div>
-            </div>
-            <div class="stat-card" id="unplaced-stat-card" data-filter="unplaced">
-                <h3><i class="fas fa-user-clock"></i> 未安置人员</h3>
-                <div class="stat-number" id="unplaced-persons">0</div>
-            </div>
-        </div>
-        
-        <div class="alert alert-success" id="success-alert">
-            操作成功！房源信息已更新。
-        </div>
-        
-        <div class="alert alert-error" id="error-alert">
-            请填写所有必填字段！
-        </div>
-        
-        <div class="copy-notification" id="copy-notification">
-            <i class="fas fa-check-circle"></i> 已复制到剪贴板
-        </div>
-        
-        <div class="main-layout">
-            <div class="left-sidebar">
-                <div class="panel collapsible" id="buildings-panel">
-                    <div class="panel-header" id="buildings-panel-header">
-                        <h2><i class="fas fa-list"></i> 楼栋列表</h2>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="panel-content" id="buildings-panel-content">
-                        <button class="btn btn-success" id="add-building-btn" style="width: 100%; margin-bottom: 15px;">
-                            <i class="fas fa-plus"></i> 添加新楼栋
-                        </button>
-                        <div class="buildings-list" id="buildings-list">
-                            <div class="empty-list">暂无楼栋，请先添加</div>
-                        </div>
-                        <div class="save-notice">
-                            <i class="fas fa-save"></i> 所有数据已自动保存
-                        </div>
-                    </div>
+        <!-- 页面1：房源信息 -->
+        <div class="page active" id="page-home">
+            <div class="header-area">
+                <div class="logo-section">
+                    <div class="system-name">辉安记</div>
+                    <div class="project-name">辉县市亿源龙城（绿城）项目楼栋登记信息</div>
                 </div>
-                
-                <div class="panel collapsible" id="search-panel">
-                    <div class="panel-header" id="search-panel-header">
-                        <h2><i class="fas fa-search"></i> 人员检索</h2>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="panel-content" id="search-panel-content">
-                        <div class="search-person-section">
-                            <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #2c3e50;">按姓名检索房屋</h3>
-                            <div class="search-person-input">
-                                <input type="text" id="search-person-input" placeholder="输入人员姓名">
-                                <button class="btn btn-sm" id="search-person-btn">
-                                    <i class="fas fa-search"></i> 搜索
-                                </button>
-                            </div>
-                            <div class="search-results" id="search-results">
-                                <div class="empty-list">输入姓名搜索人员名下房屋信息</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel collapsible" id="unplaced-panel">
-                    <div class="panel-header" id="unplaced-panel-header">
-                        <h2><i class="fas fa-user-clock"></i> 未安置人员</h2>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="panel-content" id="unplaced-panel-content">
-                        <div class="unplaced-actions">
-                            <button class="btn btn-success btn-sm" id="add-unplaced-btn">
-                                <i class="fas fa-plus"></i> 添加
-                            </button>
-                            <button class="btn btn-warning btn-sm" id="refresh-unplaced-btn">
-                                <i class="fas fa-sync"></i> 刷新
-                            </button>
-                        </div>
-                        <div class="unplaced-list" id="unplaced-list">
-                            <table class="unplaced-table" id="unplaced-table">
-                                <thead>
-                                    <tr>
-                                        <th>姓名</th>
-                                        <th>联系方式</th>
-                                        <th>拆迁楼位</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="unplaced-table-body">
-                                    <tr>
-                                        <td colspan="4" style="text-align: center; padding: 20px;">暂无未安置人员信息</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel collapsible" id="data-panel">
-                    <div class="panel-header" id="data-panel-header">
-                        <h2><i class="fas fa-database"></i> 数据管理</h2>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="panel-content" id="data-panel-content">
-                        <div class="quick-actions">
-                            <div class="quick-action" id="copy-all-data" title="复制所有房源信息">
-                                <i class="fas fa-copy"></i> 复制数据
-                            </div>
-                            <div class="quick-action" id="clear-all-data" title="清空所有数据">
-                                <i class="fas fa-trash-alt"></i> 清空数据
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-warning" id="export-data">
-                                <i class="fas fa-download"></i> 导出数据
-                            </button>
-                            <button class="btn btn-secondary" id="import-data">
-                                <i class="fas fa-upload"></i> 导入数据
-                            </button>
-                        </div>
-                        <input type="file" id="import-file" accept=".json" style="display: none;">
-                    </div>
-                </div>
-                
-                <div class="panel collapsible" id="quick-actions-panel">
-                    <div class="panel-header" id="quick-actions-panel-header">
-                        <h2><i class="fas fa-bolt"></i> 快捷操作</h2>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="panel-content" id="quick-actions-panel-content">
-                        <div class="quick-actions">
-                            <div class="quick-action" id="select-all-empty">
-                                <i class="fas fa-check-square"></i> 选择所有空房
-                            </div>
-                            <div class="quick-action" id="export-empty-list">
-                                <i class="fas fa-file-export"></i> 导出空房列表
-                            </div>
-                        </div>
-                        <div class="quick-actions">
-                            <div class="quick-action" id="highlight-empty">
-                                <i class="fas fa-highlighter"></i> 高亮空房
-                            </div>
-                            <div class="quick-action" id="clear-highlights">
-                                <i class="fas fa-times-circle"></i> 清除高亮
-                            </div>
-                        </div>
-                    </div>
+                <div class="header-info">
+                    <div class="current-date" id="current-date">正在加载日期...</div>
                 </div>
             </div>
             
-            <div class="right-content">
+            <div class="dashboard">
+                <div class="stat-card total" id="total-stat-card" data-filter="all">
+                    <h3><i class="fas fa-home"></i> 房源总数</h3>
+                    <div class="stat-number" id="total-units">0</div>
+                </div>
+                <div class="stat-card empty" id="empty-stat-card" data-filter="empty">
+                    <h3><i class="fas fa-door-open"></i> 空房数量</h3>
+                    <div class="stat-number" id="empty-units">0</div>
+                </div>
+                <div class="stat-card purchased" id="purchased-stat-card" data-filter="purchased">
+                    <h3><i class="fas fa-user-tie"></i> 购房户数量</h3>
+                    <div class="stat-number" id="purchased-units">0</div>
+                </div>
+                <div class="stat-card relocated" id="relocated-stat-card" data-filter="relocated">
+                    <h3><i class="fas fa-users"></i> 安置户数量</h3>
+                    <div class="stat-number" id="relocated-units">0</div>
+                </div>
+                <div class="stat-card mortgage" id="mortgage-stat-card" data-filter="mortgage">
+                    <h3><i class="fas fa-handshake"></i> 抵账房数量</h3>
+                    <div class="stat-number" id="mortgage-units">0</div>
+                </div>
+                <div class="stat-card" id="unplaced-stat-card" data-filter="unplaced">
+                    <h3><i class="fas fa-user-clock"></i> 未安置人员</h3>
+                    <div class="stat-number" id="unplaced-persons">0</div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-list"></i> 楼栋列表</h2>
+                <div class="buildings-list" id="buildings-list">
+                    <div class="empty-list">暂无楼栋，请先添加</div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-user-clock"></i> 未安置人员信息</h2>
+                <div class="unplaced-actions">
+                    <button class="btn btn-success btn-sm" id="add-unplaced-btn">
+                        <i class="fas fa-plus"></i> 添加
+                    </button>
+                    <button class="btn btn-warning btn-sm" id="refresh-unplaced-btn">
+                        <i class="fas fa-sync"></i> 刷新
+                    </button>
+                </div>
+                <div class="unplaced-list-container">
+                    <table class="unplaced-table" id="unplaced-table">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>联系方式</th>
+                                <th>拆迁楼位</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unplaced-table-body">
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 20px;">暂无未安置人员信息</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页面2：登记/编辑房源 -->
+        <div class="page" id="page-edit">
+            <div class="header-area">
+                <div class="logo-section">
+                    <div class="system-name">辉安记</div>
+                    <div class="project-name">房屋登记/编辑页面</div>
+                </div>
+                <div class="header-info">
+                    <div class="current-date" id="current-date-edit">正在加载日期...</div>
+                </div>
+            </div>
+            
+            <div class="alert alert-success" id="success-alert">
+                操作成功！房源信息已更新。
+            </div>
+            
+            <div class="alert alert-error" id="error-alert">
+                请填写所有必填字段！
+            </div>
+            
+            <div class="copy-notification" id="copy-notification">
+                <i class="fas fa-check-circle"></i> 已复制到剪贴板
+            </div>
+            
+            <div class="main-layout">
                 <div class="building-management">
                     <div class="settings-section" id="settings-panel">
                         <div class="panel">
@@ -2017,13 +2120,84 @@
             </div>
         </div>
         
+        <!-- 页面3：操作栏 -->
+        <div class="page" id="page-manage">
+            <div class="header-area">
+                <div class="logo-section">
+                    <div class="system-name">辉安记</div>
+                    <div class="project-name">系统操作管理</div>
+                </div>
+                <div class="header-info">
+                    <div class="current-date" id="current-date-manage">正在加载日期...</div>
+                </div>
+            </div>
+            
+            <div class="main-layout">
+                <div class="panel">
+                    <h2><i class="fas fa-database"></i> 数据管理</h2>
+                    <div class="quick-actions">
+                        <div class="quick-action" id="copy-all-data" title="复制所有房源信息">
+                            <i class="fas fa-copy"></i> 复制数据
+                        </div>
+                        <div class="quick-action" id="clear-all-data" title="清空所有数据">
+                            <i class="fas fa-trash-alt"></i> 清空数据
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-warning" id="export-data">
+                            <i class="fas fa-download"></i> 导出数据
+                        </button>
+                        <button class="btn btn-secondary" id="import-data">
+                            <i class="fas fa-upload"></i> 导入数据
+                        </button>
+                    </div>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+                
+                <div class="panel">
+                    <h2><i class="fas fa-bolt"></i> 快捷操作</h2>
+                    <div class="quick-actions">
+                        <div class="quick-action" id="select-all-empty">
+                            <i class="fas fa-check-square"></i> 选择所有空房
+                        </div>
+                        <div class="quick-action" id="export-empty-list">
+                            <i class="fas fa-file-export"></i> 导出空房列表
+                        </div>
+                    </div>
+                    <div class="quick-actions">
+                        <div class="quick-action" id="highlight-empty">
+                            <i class="fas fa-highlighter"></i> 高亮空房
+                        </div>
+                        <div class="quick-action" id="clear-highlights">
+                            <i class="fas fa-times-circle"></i> 清除高亮
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <footer>
             <p>辉安记 - 辉县市亿源龙城（绿城）项目楼栋登记系统 &copy; 2023 | 多楼栋管理，数据自动保存</p>
             <p>提示：点击"添加新楼栋"按钮后，可以在右侧进行楼栋设置和房屋登记</p>
         </footer>
     </div>
     
-    <!-- 删除确认模态框 -->
+    <!-- 底部导航栏（移动端） -->
+    <div class="bottom-nav" id="bottomNav">
+        <div class="bottom-nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>房源信息</span>
+        </div>
+        <div class="nav-center-btn" data-page="edit">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="bottom-nav-item" data-page="manage">
+            <i class="fas fa-cog"></i>
+            <span>操作栏</span>
+        </div>
+    </div>
+    
+    <!-- 模态框（保持不变） -->
     <div class="modal" id="delete-modal">
         <div class="modal-content">
             <h3>确认删除</h3>
@@ -2035,7 +2209,6 @@
         </div>
     </div>
     
-    <!-- 楼栋删除确认模态框 -->
     <div class="modal" id="delete-building-modal">
         <div class="modal-content">
             <h3>确认删除楼栋</h3>
@@ -2047,7 +2220,6 @@
         </div>
     </div>
     
-    <!-- 楼栋重命名模态框 -->
     <div class="modal" id="rename-building-modal">
         <div class="modal-content">
             <h3>重命名楼栋</h3>
@@ -2062,7 +2234,6 @@
         </div>
     </div>
     
-    <!-- 楼栋更新确认模态框 -->
     <div class="modal" id="update-building-modal">
         <div class="modal-content">
             <h3>更新楼栋设置</h3>
@@ -2088,7 +2259,6 @@
         </div>
     </div>
     
-    <!-- 房屋详情模态框 -->
     <div class="modal" id="units-detail-modal">
         <div class="modal-content">
             <h3 id="units-detail-title">房屋详情</h3>
@@ -2104,14 +2274,13 @@
         </div>
     </div>
     
-    <!-- 密码验证模态框 -->
     <div class="password-modal" id="password-modal">
         <div class="password-modal-content">
             <h3><i class="fas fa-lock"></i> 管理员验证</h3>
             <div class="form-group">
                 <label for="admin-password">请输入管理员密码</label>
                 <input type="password" id="admin-password" placeholder="输入密码">
-                <p class="instructions">默认密码：000111</p>
+                <p class="instructions">请联系系统管理员获取密码</p>
             </div>
             <div class="modal-buttons">
                 <button class="btn btn-secondary" id="cancel-password">取消</button>
@@ -2120,7 +2289,6 @@
         </div>
     </div>
     
-    <!-- 未安置人员编辑模态框 -->
     <div class="modal" id="unplaced-modal">
         <div class="modal-content">
             <h3 id="unplaced-modal-title">未安置人员信息</h3>
@@ -2166,6 +2334,221 @@
         let currentUnplacedIndex = -1; // 当前编辑的未安置人员索引
         let pendingAction = null; // 待执行的密码验证后操作
         const ADMIN_PASSWORD = '000111'; // 管理员密码
+        let selectedBuildings = new Set(); // 选中的楼栋集合
+        
+        // 页面切换功能
+        function showPage(page) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+            });
+            
+            // 显示目标页面
+            document.getElementById('page-' + page).classList.add('active');
+            
+            // 更新日期显示
+            if (page === 'edit') {
+                document.getElementById('current-date-edit').textContent = document.getElementById('current-date').textContent;
+            } else if (page === 'manage') {
+                document.getElementById('current-date-manage').textContent = document.getElementById('current-date').textContent;
+            }
+            
+            // 如果是首页，更新统计数据
+            if (page === 'home') {
+                updateHomeStatistics();
+            }
+        }
+        
+        // 导航点击事件
+        document.querySelectorAll('.bottom-nav-item, .nav-center-btn, .left-nav-item, .left-nav-center-btn').forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.dataset.page;
+                showPage(page);
+                
+                // 更新移动端导航激活状态
+                document.querySelectorAll('.bottom-nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                if (this.classList.contains('bottom-nav-item')) {
+                    this.classList.add('active');
+                }
+                
+                // 更新电脑端导航激活状态
+                document.querySelectorAll('.left-nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                if (this.classList.contains('left-nav-item')) {
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // 搜索功能
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            document.getElementById('searchPanel').classList.add('active');
+        });
+        
+        document.getElementById('closeSearch').addEventListener('click', function() {
+            document.getElementById('searchPanel').classList.remove('active');
+        });
+        
+        // 人员搜索功能
+        document.getElementById('searchPersonBtn').addEventListener('click', searchPersonByName);
+        document.getElementById('searchPersonName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPersonByName();
+            }
+        });
+        
+        function searchPersonByName() {
+            const searchName = document.getElementById('searchPersonName').value.trim().toLowerCase();
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchName) {
+                searchResults.innerHTML = '<div class="empty-list">请输入人员姓名</div>';
+                return;
+            }
+            
+            let results = [];
+            
+            // 在所有楼栋中搜索该姓名
+            buildingsData.forEach(building => {
+                building.data.forEach(unitData => {
+                    unitData.forEach(floor => {
+                        floor.units.forEach(unit => {
+                            if (unit.owner && unit.owner.toLowerCase().includes(searchName)) {
+                                results.push({
+                                    buildingName: building.name,
+                                    unitNumber: unit.unitNumber,
+                                    owner: unit.owner,
+                                    tag: unit.tag,
+                                    note: unit.note || '',
+                                    buildingId: building.id
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+            
+            // 在未安置人员中搜索
+            let unplacedResults = unplacedPersons.filter(person => 
+                person.name.toLowerCase().includes(searchName)
+            );
+            
+            if (results.length === 0 && unplacedResults.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="empty-list">未找到"${searchName}"的信息</div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            // 显示未安置人员信息
+            if (unplacedResults.length > 0) {
+                html += `<h5 style="margin: 15px 0 10px 0; color: #2c3e50;">未安置人员信息 (${unplacedResults.length}人)</h5>`;
+                unplacedResults.forEach(person => {
+                    html += `
+                        <div class="search-result-item">
+                            <div class="search-result-header">
+                                <div class="search-result-name">${person.name} (未安置)</div>
+                            </div>
+                            <div class="search-result-contact">联系方式: ${person.contact || '-'}</div>
+                            <div class="search-result-location">拆迁楼位: ${person.location || '-'}</div>
+                            ${person.notes ? `<div class="unit-note"><span class="unit-note-label">备注：</span>${person.notes}</div>` : ''}
+                        </div>
+                    `;
+                });
+            }
+            
+            // 显示房屋信息
+            if (results.length > 0) {
+                // 按姓名分组
+                const groupedResults = {};
+                results.forEach(result => {
+                    if (!groupedResults[result.owner]) {
+                        groupedResults[result.owner] = [];
+                    }
+                    groupedResults[result.owner].push(result);
+                });
+                
+                html += `<h5 style="margin: 15px 0 10px 0; color: #2c3e50;">名下房屋信息</h5>`;
+                Object.keys(groupedResults).forEach(owner => {
+                    const ownerResults = groupedResults[owner];
+                    
+                    html += `
+                        <div class="search-result-item">
+                            <div class="search-result-header">
+                                <div class="search-result-name">${owner}</div>
+                                <div class="search-result-contact">${ownerResults.length}套房屋</div>
+                            </div>
+                            <div class="search-result-units">
+                    `;
+                    
+                    ownerResults.forEach(result => {
+                        const statusText = getStatusText(result.tag);
+                        html += `
+                            <div class="search-result-unit" data-building="${result.buildingId}" data-unit="${result.unitNumber}">
+                                ${result.buildingName} ${result.unitNumber} (${statusText})
+                            </div>
+                        `;
+                    });
+                    
+                    if (ownerResults[0].note) {
+                        html += `
+                            <div class="unit-note">
+                                <span class="unit-note-label">备注：</span>
+                                <span class="note-display">${ownerResults[0].note}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            searchResults.innerHTML = html;
+            
+            // 添加点击房屋跳转功能
+            document.querySelectorAll('.search-result-unit').forEach(unit => {
+                unit.addEventListener('click', function() {
+                    const buildingId = this.dataset.building;
+                    const unitNumber = this.dataset.unit;
+                    
+                    // 切换到登记/编辑页面
+                    showPage('edit');
+                    
+                    // 切换到对应楼栋
+                    const building = buildingsData.find(b => b.id === buildingId);
+                    if (building) {
+                        currentBuildingId = buildingId;
+                        loadBuilding(buildingId);
+                        
+                        // 提取楼层和单元信息
+                        const match = unitNumber.match(/(\d+)-(\d+)/);
+                        if (match) {
+                            const floorNum = parseInt(match[2].toString().substring(0, match[2].toString().length - 2));
+                            
+                            // 设置选择器
+                            floorSelect.value = floorNum;
+                            updateUnitSelectorForEdit();
+                            unitSelect.value = unitNumber;
+                            loadUnitData();
+                            
+                            // 滚动到编辑面板
+                            document.getElementById('edit-panel').scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    
+                    // 关闭搜索面板
+                    document.getElementById('searchPanel').classList.remove('active');
+                });
+            });
+        }
         
         // DOM 元素
         const buildingNameInput = document.getElementById('building-name');
@@ -2186,7 +2569,6 @@
         const searchInput = document.getElementById('search-input');
         const clearSearchBtn = document.getElementById('clear-search');
         const buildingsList = document.getElementById('buildings-list');
-        const addBuildingBtn = document.getElementById('add-building-btn');
         const currentBuildingNameElement = document.getElementById('current-building-name');
         const settingsPanel = document.getElementById('settings-panel');
         const unitsOverviewBody = document.getElementById('units-overview-body');
@@ -2197,14 +2579,32 @@
         const unitSelectorContainer = document.getElementById('unit-selector-container');
         const currentUnitDisplay = document.getElementById('current-unit-display');
         
-        // 新增DOM元素
-        const searchPersonInput = document.getElementById('search-person-input');
-        const searchPersonBtn = document.getElementById('search-person-btn');
-        const searchResults = document.getElementById('search-results');
+        // 统计卡片元素
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+        
+                if (filter === 'unplaced') {
+                    // 显示未安置人员详情
+                    showUnplacedDetails();
+               } else {
+                    // 显示房屋类型详情
+                   showUnitsDetailsByType(filter);
+                }
+            });
+        });
+        const totalUnitsElement = document.getElementById('total-units');
+        const emptyUnitsElement = document.getElementById('empty-units');
+        const purchasedUnitsElement = document.getElementById('purchased-units');
+        const relocatedUnitsElement = document.getElementById('relocated-units');
+        const mortgageUnitsElement = document.getElementById('mortgage-units');
+        const unplacedPersonsElement = document.getElementById('unplaced-persons');
+        
+        // 未安置人员元素
         const addUnplacedBtn = document.getElementById('add-unplaced-btn');
         const refreshUnplacedBtn = document.getElementById('refresh-unplaced-btn');
         const unplacedTableBody = document.getElementById('unplaced-table-body');
-        const unplacedPersonsElement = document.getElementById('unplaced-persons');
         
         // 密码验证相关元素
         const passwordModal = document.getElementById('password-modal');
@@ -2220,14 +2620,6 @@
         const unplacedNotesInput = document.getElementById('unplaced-notes');
         const cancelUnplacedBtn = document.getElementById('cancel-unplaced');
         const saveUnplacedBtn = document.getElementById('save-unplaced');
-        
-        // 统计卡片元素
-        const statCards = document.querySelectorAll('.stat-card');
-        const totalUnitsElement = document.getElementById('total-units');
-        const emptyUnitsElement = document.getElementById('empty-units');
-        const purchasedUnitsElement = document.getElementById('purchased-units');
-        const relocatedUnitsElement = document.getElementById('relocated-units');
-        const mortgageUnitsElement = document.getElementById('mortgage-units');
         
         // 弹窗元素
         const deleteModal = document.getElementById('delete-modal');
@@ -2265,12 +2657,6 @@
         const importDataBtn = document.getElementById('import-data');
         const importFileInput = document.getElementById('import-file');
         
-        // 折叠面板元素
-        const collapsiblePanels = document.querySelectorAll('.collapsible');
-        
-        // 筛选控制元素
-        const filterControls = document.querySelectorAll('.filter-control');
-        
         // 高亮控制元素
         const highlightEmptyBtn = document.getElementById('highlight-empty-btn');
         const highlightPurchasedBtn = document.getElementById('highlight-purchased-btn');
@@ -2293,7 +2679,10 @@
                 day: 'numeric',
                 weekday: 'long'
             };
-            currentDateElement.textContent = now.toLocaleDateString('zh-CN', options);
+            const dateStr = now.toLocaleDateString('zh-CN', options);
+            currentDateElement.textContent = dateStr;
+            document.getElementById('current-date-edit').textContent = dateStr;
+            document.getElementById('current-date-manage').textContent = dateStr;
         }
         
         // 初始化标签选择
@@ -2342,61 +2731,24 @@
                     unplacedPersons = [];
                 }
             }
+            
+            // 加载选中的楼栋
+            const savedSelectedBuildings = localStorage.getItem('selectedBuildings');
+            if (savedSelectedBuildings) {
+                try {
+                    selectedBuildings = new Set(JSON.parse(savedSelectedBuildings));
+                } catch (e) {
+                    console.error('加载选中的楼栋失败:', e);
+                    selectedBuildings = new Set();
+                }
+            }
         }
         
         // 保存数据到本地存储
         function saveDataToStorage() {
             localStorage.setItem('buildingsData', JSON.stringify(buildingsData));
             localStorage.setItem('unplacedPersons', JSON.stringify(unplacedPersons));
-        }
-        
-        // 初始化折叠面板
-        collapsiblePanels.forEach(panel => {
-            const header = panel.querySelector('.panel-header');
-            const content = panel.querySelector('.panel-content');
-            
-            // 默认展开所有面板
-            header.classList.remove('collapsed');
-            content.classList.remove('collapsed');
-            
-            header.addEventListener('click', function() {
-                const isCollapsed = this.classList.contains('collapsed');
-                
-                // 切换状态
-                this.classList.toggle('collapsed');
-                content.classList.toggle('collapsed');
-                
-                // 保存折叠状态到本地存储
-                savePanelState(panel.id, !isCollapsed);
-            });
-        });
-        
-        // 保存面板状态
-        function savePanelState(panelId, isExpanded) {
-            const panelStates = JSON.parse(localStorage.getItem('panelStates') || '{}');
-            panelStates[panelId] = isExpanded;
-            localStorage.setItem('panelStates', JSON.stringify(panelStates));
-        }
-        
-        // 加载面板状态
-        function loadPanelStates() {
-            const panelStates = JSON.parse(localStorage.getItem('panelStates') || '{}');
-            
-            collapsiblePanels.forEach(panel => {
-                const header = panel.querySelector('.panel-header');
-                const content = panel.querySelector('.panel-content');
-                const panelId = panel.id;
-                
-                if (panelStates.hasOwnProperty(panelId)) {
-                    if (panelStates[panelId]) {
-                        header.classList.remove('collapsed');
-                        content.classList.remove('collapsed');
-                    } else {
-                        header.classList.add('collapsed');
-                        content.classList.add('collapsed');
-                    }
-                }
-            });
+            localStorage.setItem('selectedBuildings', JSON.stringify(Array.from(selectedBuildings)));
         }
         
         // 更新未安置人员列表
@@ -2537,133 +2889,6 @@
         cancelUnplacedBtn.addEventListener('click', function() {
             unplacedModal.style.display = 'none';
         });
-        
-        // 按人员姓名搜索房屋
-        searchPersonBtn.addEventListener('click', searchPersonByName);
-        searchPersonInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchPersonByName();
-            }
-        });
-        
-        function searchPersonByName() {
-            const searchName = searchPersonInput.value.trim().toLowerCase();
-            
-            if (!searchName) {
-                showAlert('error', '请输入人员姓名');
-                return;
-            }
-            
-            let results = [];
-            
-            // 在所有楼栋中搜索该姓名
-            buildingsData.forEach(building => {
-                building.data.forEach(unitData => {
-                    unitData.forEach(floor => {
-                        floor.units.forEach(unit => {
-                            if (unit.owner && unit.owner.toLowerCase().includes(searchName)) {
-                                results.push({
-                                    buildingName: building.name,
-                                    unitNumber: unit.unitNumber,
-                                    owner: unit.owner,
-                                    tag: unit.tag,
-                                    note: unit.note || '',
-                                    buildingId: building.id
-                                });
-                            }
-                        });
-                    });
-                });
-            });
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = `
-                    <div class="empty-list">未找到"${searchName}"名下的房屋信息</div>
-                `;
-                return;
-            }
-            
-            // 按姓名分组
-            const groupedResults = {};
-            results.forEach(result => {
-                if (!groupedResults[result.owner]) {
-                    groupedResults[result.owner] = [];
-                }
-                groupedResults[result.owner].push(result);
-            });
-            
-            let html = '';
-            Object.keys(groupedResults).forEach(owner => {
-                const ownerResults = groupedResults[owner];
-                
-                html += `
-                    <div class="search-result-item">
-                        <div class="search-result-header">
-                            <div class="search-result-name">${owner}</div>
-                            <div class="search-result-contact">${ownerResults.length}套房屋</div>
-                        </div>
-                        <div class="search-result-units">
-                `;
-                
-                ownerResults.forEach(result => {
-                    const statusText = getStatusText(result.tag);
-                    html += `
-                        <div class="search-result-unit" data-building="${result.buildingId}" data-unit="${result.unitNumber}">
-                            ${result.buildingName} ${result.unitNumber} (${statusText})
-                        </div>
-                    `;
-                });
-                
-                if (ownerResults[0].note) {
-                    html += `
-                        <div class="unit-note">
-                            <span class="unit-note-label">备注：</span>
-                            <span class="note-display">${ownerResults[0].note}</span>
-                        </div>
-                    `;
-                }
-                
-                html += `
-                        </div>
-                    </div>
-                `;
-            });
-            
-            searchResults.innerHTML = html;
-            
-            // 添加点击房屋跳转功能
-            document.querySelectorAll('.search-result-unit').forEach(unit => {
-                unit.addEventListener('click', function() {
-                    const buildingId = this.dataset.building;
-                    const unitNumber = this.dataset.unit;
-                    
-                    // 切换到对应楼栋
-                    const building = buildingsData.find(b => b.id === buildingId);
-                    if (building) {
-                        currentBuildingId = buildingId;
-                        loadBuilding(buildingId);
-                        
-                        // 提取楼层和单元信息
-                        const match = unitNumber.match(/(\d+)-(\d+)/);
-                        if (match) {
-                            const floorNum = parseInt(match[2].toString().substring(0, match[2].toString().length - 2));
-                            
-                            // 设置选择器
-                            floorSelect.value = floorNum;
-                            updateUnitSelectorForEdit();
-                            unitSelect.value = unitNumber;
-                            loadUnitData();
-                            
-                            // 滚动到编辑面板
-                            document.getElementById('edit-panel').scrollIntoView({ behavior: 'smooth' });
-                            
-                            // 执行自检自查
-                            selfCheck();
-                        }
-                    }
-                });
-            });
-        }
         
         // 管理员密码验证
         function verifyPassword(action) {
@@ -3002,64 +3227,43 @@
             });
         }
         
-        // 统计卡片点击事件
-        statCards.forEach(card => {
-            card.addEventListener('click', function() {
-                const filter = this.dataset.filter;
-                
-                // 移除其他卡片的激活状态
-                statCards.forEach(c => c.classList.remove('active'));
-                
-                // 激活当前卡片
-                this.classList.add('active');
-                
-                // 设置筛选条件
-                currentFilter = filter;
-                
-                // 更新筛选控件
-                filterControls.forEach(control => {
-                    if (control.dataset.filter === filter) {
-                        control.classList.add('active');
-                    } else {
-                        control.classList.remove('active');
-                    }
+        // 更新首页统计数据（考虑多楼栋选择）
+        function updateHomeStatistics() {
+            let total = 0;
+            let empty = 0;
+            let purchased = 0;
+            let relocated = 0;
+            let mortgage = 0;
+            
+            // 如果选中的楼栋为空，则计算所有楼栋
+            const buildingsToCalculate = selectedBuildings.size > 0 ? 
+                buildingsData.filter(b => selectedBuildings.has(b.id)) : 
+                buildingsData;
+            
+            buildingsToCalculate.forEach(building => {
+                building.data.forEach(unitData => {
+                    unitData.forEach(floor => {
+                        floor.units.forEach(unit => {
+                            total++;
+                            
+                            switch(unit.tag) {
+                                case 'empty': empty++; break;
+                                case 'purchased': purchased++; break;
+                                case 'relocated': relocated++; break;
+                                case 'mortgage': mortgage++; break;
+                            }
+                        });
+                    });
                 });
-                
-                // 如果是特定类型，显示详情
-                if (filter !== 'all') {
-                    showUnitsByType(filter);
-                } else {
-                    // 重新渲染楼栋（应用筛选）
-                    renderBuilding();
-                }
             });
-        });
-        
-        // 筛选控制点击事件
-        filterControls.forEach(control => {
-            control.addEventListener('click', function() {
-                const filter = this.dataset.filter;
-                
-                // 更新筛选控件状态
-                filterControls.forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                
-                // 更新统计卡片状态
-                statCards.forEach(card => {
-                    if (card.dataset.filter === filter) {
-                        card.classList.add('active');
-                    } else {
-                        card.classList.remove('active');
-                    }
-                });
-                
-                // 设置筛选条件
-                currentFilter = filter;
-                
-                // 重新渲染楼栋（应用筛选）
-                renderBuilding();
-            });
-        });
+            
+            totalUnitsElement.textContent = total;
+            emptyUnitsElement.textContent = empty;
+            purchasedUnitsElement.textContent = purchased;
+            relocatedUnitsElement.textContent = relocated;
+            mortgageUnitsElement.textContent = mortgage;
+            unplacedPersonsElement.textContent = unplacedPersons.length;
+        }
         
         // 高亮控制
         highlightEmptyBtn.addEventListener('click', function() {
@@ -3155,11 +3359,12 @@
             if (confirm('确定要清空所有数据吗？此操作不可撤销！')) {
                 buildingsData = [];
                 currentBuildingId = null;
+                selectedBuildings.clear();
                 currentBuildingNameElement.textContent = '未选择楼栋';
                 buildingContainer.innerHTML = '<div class="empty-list">请选择或创建一个楼栋以查看房屋信息</div>';
                 settingsPanel.classList.remove('active');
                 renderBuildingsList();
-                updateStatistics();
+                updateHomeStatistics();
                 updateUnitsOverview();
                 updateUnitSelector();
                 saveDataToStorage();
@@ -3300,7 +3505,168 @@
                 default: return '未知';
             }
         }
+       
+       // 显示未安置人员详情
+function showUnplacedDetails() {
+    if (unplacedPersons.length === 0) {
+        showAlert('info', '暂无未安置人员信息');
+        return;
+    }
+    
+    unitsDetailTitle.textContent = `未安置人员名单 (${unplacedPersons.length}人)`;
+    
+    let html = `<div class="units-list-modal">`;
+    
+    // 按日期排序（最新的在前面）
+    const sortedPersons = [...unplacedPersons].sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+    });
+    
+    sortedPersons.forEach((person, index) => {
+        html += `
+            <div class="unit-modal-item">
+                <div class="unit-modal-info">
+                    <div class="unit-modal-number">${person.name}</div>
+                    <div class="unit-modal-owner">联系方式: ${person.contact || '-'}</div>
+                    <div class="unit-modal-owner">拆迁楼位: ${person.location || '-'}</div>
+                    ${person.notes ? `<div class="unit-modal-note">备注: ${person.notes}</div>` : ''}
+                    <div class="unit-modal-owner" style="font-size: 0.8rem; color: #95a5a6;">
+                        登记日期: ${person.date || '-'}
+                    </div>
+                </div>
+                <div class="unit-modal-tag unplaced" style="background-color: #3498db; color: white;">
+                    未安置
+                </div>
+            </div>
+        `;
+    });
+    
+    html += `</div>`;
+    unitsDetailContent.innerHTML = html;
+    unitsDetailModal.style.display = 'flex';
+}
+
+// 显示房屋类型详情
+function showUnitsDetailsByType(type) {
+    // 根据选中的楼栋计算数据
+    const buildingsToCalculate = selectedBuildings.size > 0 ? 
+        buildingsData.filter(b => selectedBuildings.has(b.id)) : 
+        buildingsData;
+    
+    if (buildingsToCalculate.length === 0) {
+        showAlert('info', '请先添加或选择楼栋');
+        return;
+    }
+    
+    let allUnits = [];
+    let typeName = '';
+    let totalCount = 0;
+    
+    // 收集所有符合条件的房屋
+    buildingsToCalculate.forEach(building => {
+        building.data.forEach(unitData => {
+            unitData.forEach(floor => {
+                floor.units.forEach(unit => {
+                    if (type === 'all' || unit.tag === type) {
+                        allUnits.push({
+                            buildingName: building.name,
+                            unitNumber: unit.unitNumber,
+                            tag: unit.tag,
+                            owner: unit.owner,
+                            note: unit.note || '',
+                            buildingId: building.id
+                        });
+                    }
+                });
+            });
+        });
+    });
+    
+    // 设置类型名称
+    switch(type) {
+        case 'all': typeName = '全部房屋'; break;
+        case 'empty': typeName = '空房'; break;
+        case 'purchased': typeName = '购房户'; break;
+        case 'relocated': typeName = '安置户'; break;
+        case 'mortgage': typeName = '抵账房'; break;
+    }
+    
+    totalCount = allUnits.length;
+    
+    if (totalCount === 0) {
+        showAlert('info', `暂无${typeName}信息`);
+        return;
+    }
+    
+    unitsDetailTitle.textContent = `${typeName}详情 (${totalCount}个)`;
+    
+    // 按楼栋和房号排序
+    allUnits.sort((a, b) => {
+        if (a.buildingName !== b.buildingName) {
+            return a.buildingName.localeCompare(b.buildingName);
+        }
+        return a.unitNumber.localeCompare(b.unitNumber);
+    });
+    
+    let html = `<div class="units-list-modal">`;
+    
+    allUnits.forEach(unit => {
+        const statusText = getStatusText(unit.tag);
+        const statusClass = unit.tag;
         
+        html += `
+            <div class="unit-modal-item" data-building="${unit.buildingId}" data-unit="${unit.unitNumber}">
+                <div class="unit-modal-info">
+                    <div class="unit-modal-number">${unit.buildingName} ${unit.unitNumber}</div>
+                    <div class="unit-modal-owner">${unit.owner || '空房'}</div>
+                    ${unit.note ? `<div class="unit-modal-note">备注: ${unit.note}</div>` : ''}
+                </div>
+                <div class="unit-modal-tag ${statusClass}">${statusText}</div>
+            </div>
+        `;
+    });
+    
+    html += `</div>`;
+    unitsDetailContent.innerHTML = html;
+    unitsDetailModal.style.display = 'flex';
+    
+    // 添加点击房屋跳转功能
+    document.querySelectorAll('.unit-modal-item[data-building]').forEach(item => {
+        item.addEventListener('click', function() {
+            const buildingId = this.dataset.building;
+            const unitNumber = this.dataset.unit;
+            
+            // 切换到登记/编辑页面
+            showPage('edit');
+            
+            // 切换到对应楼栋
+            const building = buildingsData.find(b => b.id === buildingId);
+            if (building) {
+                currentBuildingId = buildingId;
+                loadBuilding(buildingId);
+                
+                // 提取楼层和单元信息
+                const match = unitNumber.match(/(\d+)-(\d+)/);
+                if (match) {
+                    const floorNum = parseInt(match[2].toString().substring(0, match[2].toString().length - 2));
+                    
+                    // 设置选择器
+                    floorSelect.value = floorNum;
+                    updateUnitSelectorForEdit();
+                    unitSelect.value = unitNumber;
+                    loadUnitData();
+                    
+                    // 滚动到编辑面板
+                    document.getElementById('edit-panel').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // 关闭详情模态框
+            unitsDetailModal.style.display = 'none';
+        });
+    });
+}
+
         // 显示复制通知
         function showCopyNotification(message) {
             copyNotification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
@@ -3363,7 +3729,7 @@
         });
         
         // 添加新楼栋按钮 - 需要密码验证
-        addBuildingBtn.addEventListener('click', function() {
+        function addNewBuilding() {
             verifyPassword(function() {
                 // 显示楼栋设置面板
                 settingsPanel.classList.add('active');
@@ -3391,8 +3757,14 @@
                 
                 // 将焦点设置到楼栋名称输入框
                 buildingNameInput.focus();
+                
+                // 切换到编辑页面
+                showPage('edit');
             });
-        });
+        }
+        
+        // 为添加楼栋按钮添加事件（需要从页面1的楼栋列表中添加）
+        // 在渲染楼栋列表时会动态创建添加按钮
         
         // 取消楼栋设置
         cancelBuildingBtn.addEventListener('click', function() {
@@ -3427,6 +3799,8 @@
                     }
                     // 删除已有的同名楼栋
                     buildingsData = buildingsData.filter(b => b.name !== buildingName);
+                    // 从选中的楼栋中移除
+                    selectedBuildings.delete(existingBuilding.id);
                 }
                 
                 // 创建新楼栋
@@ -3462,6 +3836,8 @@
                 
                 buildingsData.push(newBuilding);
                 currentBuildingId = newBuilding.id;
+                // 默认选中新添加的楼栋
+                selectedBuildings.add(newBuilding.id);
                 
                 // 隐藏楼栋设置面板
                 settingsPanel.classList.remove('active');
@@ -3469,6 +3845,7 @@
                 // 更新显示
                 renderBuildingsList();
                 loadBuilding(currentBuildingId);
+                updateHomeStatistics();
                 saveDataToStorage();
                 
                 showAlert('success', `新楼栋"${buildingName}"已生成：${floorCount}层，每层${unitsPerFloor}户，${buildingUnits}个单元`);
@@ -3516,12 +3893,21 @@
             }
         }
         
-        // 渲染楼栋列表
+        // 渲染楼栋列表（带多选功能）
         function renderBuildingsList() {
             buildingsList.innerHTML = '';
             
+            // 添加创建新楼栋的按钮
+            const addBuildingBtn = document.createElement('button');
+            addBuildingBtn.className = 'btn btn-success';
+            addBuildingBtn.style.width = '100%';
+            addBuildingBtn.style.marginBottom = '15px';
+            addBuildingBtn.innerHTML = '<i class="fas fa-plus"></i> 添加新楼栋';
+            addBuildingBtn.addEventListener('click', addNewBuilding);
+            buildingsList.appendChild(addBuildingBtn);
+            
             if (buildingsData.length === 0) {
-                buildingsList.innerHTML = '<div class="empty-list">暂无楼栋，请先添加</div>';
+                buildingsList.innerHTML += '<div class="empty-list">暂无楼栋，请先添加</div>';
                 return;
             }
             
@@ -3545,7 +3931,10 @@
                 
                 buildingItem.innerHTML = `
                     <div class="building-info">
-                        <div class="building-name">${building.name}</div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <input type="checkbox" class="building-checkbox" id="building-${building.id}" ${selectedBuildings.has(building.id) ? 'checked' : ''}>
+                            <div class="building-name">${building.name}</div>
+                        </div>
                         <div class="building-stats">
                             <span>${building.floors}层</span>
                             <span>${building.unitsPerFloor}户/层</span>
@@ -3566,9 +3955,29 @@
                 
                 // 点击楼栋项
                 buildingItem.addEventListener('click', function(e) {
-                    if (!e.target.closest('.building-action')) {
+                    if (!e.target.closest('.building-action') && !e.target.classList.contains('building-checkbox')) {
                         loadBuilding(building.id);
+                        // 切换到编辑页面
+                        showPage('edit');
                     }
+                });
+                
+                // 楼栋多选框点击事件
+                const checkbox = buildingItem.querySelector(`#building-${building.id}`);
+                checkbox.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (this.checked) {
+                        selectedBuildings.add(building.id);
+                    } else {
+                        selectedBuildings.delete(building.id);
+                    }
+                    
+                    // 更新首页统计数据
+                    updateHomeStatistics();
+                    
+                    // 保存到本地存储
+                    saveDataToStorage();
                 });
                 
                 // 重命名楼栋按钮 - 需要密码验证
@@ -3653,6 +4062,9 @@
                     const buildingName = buildingsData[index].name;
                     buildingsData.splice(index, 1);
                     
+                    // 从选中的楼栋中移除
+                    selectedBuildings.delete(selectedBuildingForDelete);
+                    
                     // 如果删除了当前选中的楼栋，选择另一个楼栋
                     if (currentBuildingId === selectedBuildingForDelete) {
                         if (buildingsData.length > 0) {
@@ -3662,7 +4074,7 @@
                             currentBuildingId = null;
                             currentBuildingNameElement.textContent = '未选择楼栋';
                             buildingContainer.innerHTML = '<div class="empty-list">请选择或创建一个楼栋以查看房屋信息</div>';
-                            updateStatistics();
+                            updateHomeStatistics();
                             updateUnitsOverview();
                             updateUnitSelector();
                         }
@@ -3906,6 +4318,9 @@
                     // 执行自检自查
                     selfCheck();
                     
+                    // 更新首页统计数据
+                    updateHomeStatistics();
+                    
                     showAlert('success', `房屋${selectedUnit}信息已保存`);
                     
                     // 清空表单
@@ -3979,6 +4394,9 @@
                                 
                                 // 执行自检自查
                                 selfCheck();
+                                
+                                // 更新首页统计数据
+                                updateHomeStatistics();
                                 
                                 // 清空表单
                                 ownerNameInput.value = '';
@@ -4191,7 +4609,7 @@
             });
         }
         
-        // 更新统计信息
+        // 更新统计信息（仅限当前楼栋）
         function updateStatistics() {
             let total = 0;
             let empty = 0;
@@ -4218,12 +4636,6 @@
                     });
                 }
             }
-            
-            totalUnitsElement.textContent = total;
-            emptyUnitsElement.textContent = empty;
-            purchasedUnitsElement.textContent = purchased;
-            relocatedUnitsElement.textContent = relocated;
-            mortgageUnitsElement.textContent = mortgage;
         }
         
         // 搜索功能
@@ -4235,7 +4647,8 @@
         exportDataBtn.addEventListener('click', function() {
             const dataStr = JSON.stringify({
                 buildingsData: buildingsData,
-                unplacedPersons: unplacedPersons
+                unplacedPersons: unplacedPersons,
+                selectedBuildings: Array.from(selectedBuildings)
             }, null, 2);
             const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
             
@@ -4280,7 +4693,13 @@
                         updateUnplacedList();
                     }
                     
+                    // 导入选中的楼栋
+                    if (importedData.selectedBuildings && Array.isArray(importedData.selectedBuildings)) {
+                        selectedBuildings = new Set(importedData.selectedBuildings);
+                    }
+                    
                     saveDataToStorage();
+                    updateHomeStatistics();
                     showAlert('success', '数据导入成功');
                 } catch (error) {
                     showAlert('error', '导入数据失败：' + error.message);
@@ -4321,8 +4740,6 @@
             
             // 从本地存储加载数据
             loadDataFromStorage();
-            // 加载面板状态
-            loadPanelStates();
             
             // 如果没有数据，创建一个默认楼栋
             if (buildingsData.length === 0) {
@@ -4384,6 +4801,7 @@
                 
                 buildingsData.push(defaultBuilding);
                 currentBuildingId = defaultBuilding.id;
+                selectedBuildings.add(defaultBuilding.id);
                 
                 // 添加示例未安置人员
                 unplacedPersons = [
@@ -4399,15 +4817,12 @@
                 renderBuildingsList();
                 loadBuilding(currentBuildingId);
                 updateUnplacedList();
-                
-                // 默认激活"全部房屋"筛选
-                document.querySelector('.filter-control[data-filter="all"]').click();
-                document.querySelector('.overview-filter-btn[data-filter="all"]').click();
+                updateHomeStatistics();
             }
+            
+            // 默认显示首页
+            showPage('home');
         });
     </script>
 </body>
 </html>
-
-
-
